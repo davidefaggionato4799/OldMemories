@@ -14,10 +14,13 @@
     background-size: cover;
     min-height: 100dvh;
     height: calc(var(--vh, 1vh) * 100);
+  }
+  body {
     display: flex;
-    flex-direction: column; /* per poter mettere il footer in basso */
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    position: relative;
   }
   .overlay {
     background: rgba(0,0,0,0.6);
@@ -62,10 +65,12 @@
     text-align: center;
     font-size: 12px;
     color: white;
-    margin-top: auto; /* spinge il footer in basso */
-    padding: 10px 5px;
+    padding: 8px 5px;
     line-height: 1.4;
-    background: rgba(0,0,0,0.4);
+    background: rgba(0,0,0,0.3); /* leggermente trasparente */
+    position: fixed;
+    bottom: 0;
+    left: 0;
     width: 100%;
   }
   @media (max-width: 500px) {
@@ -88,7 +93,7 @@
 
   <footer>
     &copy; <span id="year"></span> OLD MEMORIES DI PARRILLA VITTORIO<br>
-    Indirizzo: VIA TOGLIATTI 6 - 87060 - CALOPEZZATI (CS)<br>
+    INDIRIZZO: VIA TOGLIATTI 6 - 87060 - CALOPEZZATI (CS)<br>
     Partita IVA: 02745890786 - PEC: oldmemories@pec.it
   </footer>
 
@@ -96,15 +101,13 @@
   function setVh() {
     document.documentElement.style.setProperty('--vh', ${window.innerHeight * 0.01}px);
   }
-  // Aggiorna l'anno nel footer
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Aggiornamento continuo per evitare bande bianche
   setVh();
   window.addEventListener('resize', setVh);
   window.addEventListener('orientationchange', setVh);
   window.addEventListener('load', setVh);
-  window.addEventListener('scroll', setVh); // anche durante lo scroll
+  window.addEventListener('scroll', setVh);
 </script>
 </body>
 </html>
