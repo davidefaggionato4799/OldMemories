@@ -10,10 +10,12 @@
     width: 100%;
     font-family: system-ui, sans-serif;
     color:#e8eef6;
-    background: url("sfondo.jpg") no-repeat center center fixed;
-    background-size: 110%;
-    height: calc(var(--vh, 1vh) * 100); /* altezza reale viewport */
+    background: url("sfondo.jpg") no-repeat center center;
+    background-size: cover;
+    min-height: 100dvh;
+    height: calc(var(--vh, 1vh) * 100);
     display: flex;
+    flex-direction: column; /* per poter mettere il footer in basso */
     justify-content: center;
     align-items: center;
   }
@@ -38,8 +40,8 @@
   .grid {
     display:grid;
     grid-template-columns: repeat(2, 1fr);
-    row-gap: 10px;       /* spazio verticale tra le righe */
-    column-gap: 6px;     /* spazio orizzontale tra i pulsanti */
+    row-gap: 10px;
+    column-gap: 6px;
     justify-items: center;
   }
   .btn {
@@ -55,6 +57,16 @@
   .btn:hover {
     transform:translateY(-3px);
     background: linear-gradient(90deg, #ff3cac55, #2bd2ff55);
+  }
+  footer {
+    text-align: center;
+    font-size: 12px;
+    color: white;
+    margin-top: auto; /* spinge il footer in basso */
+    padding: 10px 5px;
+    line-height: 1.4;
+    background: rgba(0,0,0,0.4);
+    width: 100%;
   }
   @media (max-width: 500px) {
     .grid { grid-template-columns: 1fr; column-gap:0; }
@@ -74,13 +86,25 @@
     </div>
   </div>
 
+  <footer>
+    &copy; <span id="year"></span> OLD MEMORIES DI PARRILLA VITTORIO<br>
+    Indirizzo: VIA TOGLIATTI 6 - 87060 - CALOPEZZATI (CS)<br>
+    Partita IVA: 02745890786 - PEC: oldmemories@pec.it
+  </footer>
+
 <script>
-  // Calcola altezza reale del viewport e aggiorna la variabile CSS
   function setVh() {
     document.documentElement.style.setProperty('--vh', ${window.innerHeight * 0.01}px);
   }
+  // Aggiorna l'anno nel footer
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Aggiornamento continuo per evitare bande bianche
   setVh();
   window.addEventListener('resize', setVh);
+  window.addEventListener('orientationchange', setVh);
+  window.addEventListener('load', setVh);
+  window.addEventListener('scroll', setVh); // anche durante lo scroll
 </script>
 </body>
 </html>
