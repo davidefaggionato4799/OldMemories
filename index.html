@@ -2,29 +2,34 @@
 <html lang="it">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 <title>Bar & Cocktail — Menù</title>
 <style>
-  body {
-    margin:0; font-family: system-ui, sans-serif;
+  * { box-sizing: border-box; margin:0; padding:0; }
+  html, body {
+    width: 100%;
+    font-family: system-ui, sans-serif;
     color:#e8eef6;
     background: url("sfondo.jpg") no-repeat center center fixed;
-    background-size: 110%; /* ingrandito */
-    min-height:100vh; display:flex; justify-content:center; align-items:center; padding:20px;
+    background-size: 110%;
+    height: calc(var(--vh, 1vh) * 100); /* altezza reale viewport */
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .overlay {
     background: rgba(0,0,0,0.6);
     border-radius: 16px;
     padding: 20px;
-    width:100%;
+    width: 90%;
     max-width: 650px;
-    text-align:center;
+    text-align: center;
   }
   .logo {
     display:block;
     margin: 0 auto 20px auto;
     max-width: 300px;
-    height: auto;
+    height:auto;
   }
   h1 {
     margin-bottom: 20px;
@@ -32,16 +37,18 @@
   }
   .grid {
     display:grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 colonne */
-    row-gap: 15px;
-    column-gap: 5px;
-    justify-items: center; /* centra i pulsanti */
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 10px;       /* spazio verticale tra le righe */
+    column-gap: 6px;     /* spazio orizzontale tra i pulsanti */
+    justify-items: center;
   }
   .btn {
     appearance:none; border:1px solid #ff3cac66;
     background: linear-gradient(90deg, #ff3cac33, #2bd2ff33);
-    color:#fff; padding:14px; border-radius:12px;
-    font-weight:600; text-decoration:none; display:flex; justify-content:center; align-items:center;
+    color:#fff; padding:10px 14px;
+    border-radius:12px;
+    font-weight:600; text-decoration:none;
+    display:flex; justify-content:center; align-items:center;
     width: 100%; max-width: 220px;
     transition: transform 0.18s, background 0.18s;
   }
@@ -50,7 +57,8 @@
     background: linear-gradient(90deg, #ff3cac55, #2bd2ff55);
   }
   @media (max-width: 500px) {
-    .grid { grid-template-columns: 1fr; } /* su mobile una colonna */
+    .grid { grid-template-columns: 1fr; column-gap:0; }
+    .overlay { padding: 15px; }
   }
 </style>
 </head>
@@ -65,5 +73,14 @@
       <a class="btn" href="menu-cocktail.pdf" target="_blank">Cocktail & Spirits</a>
     </div>
   </div>
+
+<script>
+  // Calcola altezza reale del viewport e aggiorna la variabile CSS
+  function setVh() {
+    document.documentElement.style.setProperty('--vh', ${window.innerHeight * 0.01}px);
+  }
+  setVh();
+  window.addEventListener('resize', setVh);
+</script>
 </body>
 </html>
