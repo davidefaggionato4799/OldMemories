@@ -60,6 +60,16 @@
     .grid { grid-template-columns: 1fr; column-gap:0; }
     .overlay { padding: 15px; }
   }
+ .footer {
+  margin-top: 20px;
+  font-size: 0.8rem;
+  text-align: center;
+  color: #e8eef6cc;
+  line-height: 1.4;
+}
+.footer p {
+  margin: 3px 0;
+}
 </style>
 </head>
 <body>
@@ -82,6 +92,12 @@
   setVh();
   window.addEventListener('resize', setVh);
 </script>
+<script>
+  // Aggiorna l'anno corrente automaticamente
+  const year = new Date().getFullYear();
+  document.getElementById('copyright').textContent = © ${year} Old Memories di Parrilla Vittorio. Tutti i diritti riservati.;
+</script>
 </body>
 </html>
+
 
