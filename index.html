@@ -17,10 +17,15 @@
   }
   body {
     display: flex;
+    flex-direction: column;
+    min-height: calc(var(--vh, 1vh) * 100);
+  }
+  main {
+    flex: 1;
+    display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    position: relative;
+    padding-bottom: 50px; /* spazio per non far coprire l'overlay dal footer */
   }
   .overlay {
     background: rgba(0,0,0,0.6);
@@ -67,7 +72,6 @@
     color: white;
     padding: 8px 5px;
     line-height: 1.4;
-    background: rgba(0,0,0,0.3); /* leggermente trasparente */
     position: fixed;
     bottom: 0;
     left: 0;
@@ -80,20 +84,22 @@
 </style>
 </head>
 <body>
-  <div class="overlay">
-    <img src="logo.png" alt="Logo Bar" class="logo">
-    <h1>Menù del Bar & Cocktail</h1>
-    <div class="grid">
-      <a class="btn" href="menu-colazioni.pdf" target="_blank">Caffetteria & Colazioni</a>
-      <a class="btn" href="menu-pranzo.pdf" target="_blank">Pranzo & Snack</a>
-      <a class="btn" href="menu-bevande.pdf" target="_blank">Bevande Analcoliche</a>
-      <a class="btn" href="menu-cocktail.pdf" target="_blank">Cocktail & Spirits</a>
+  <main>
+    <div class="overlay">
+      <img src="logo.png" alt="Logo Bar" class="logo">
+      <h1>Menù del Bar & Cocktail</h1>
+      <div class="grid">
+        <a class="btn" href="menu-colazioni.pdf" target="_blank">Caffetteria & Colazioni</a>
+        <a class="btn" href="menu-pranzo.pdf" target="_blank">Pranzo & Snack</a>
+        <a class="btn" href="menu-bevande.pdf" target="_blank">Bevande Analcoliche</a>
+        <a class="btn" href="menu-cocktail.pdf" target="_blank">Cocktail & Spirits</a>
+      </div>
     </div>
-  </div>
+  </main>
 
   <footer>
     &copy; <span id="year"></span> OLD MEMORIES DI PARRILLA VITTORIO<br>
-    INDIRIZZO: VIA TOGLIATTI 6 - 87060 - CALOPEZZATI (CS)<br>
+    Indirizzo: Via Togliatti 6 - 87060 - Calopezzati (CS)<br>
     Partita IVA: 02745890786 - PEC: oldmemories@pec.it
   </footer>
 
